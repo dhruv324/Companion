@@ -164,7 +164,7 @@ ${companion.name}:
                 }
             }
 
-            // Save AI response to database (no longer removing commas)
+            // Save AI response to database
             await prismadb.companion.update({
                 where: {
                     id: params.chatId
@@ -181,7 +181,7 @@ ${companion.name}:
             });
             
             // Return the complete message
-            return new NextResponse(fullResponse);
+            return NextResponse.json({ content: fullResponse });
 
         } catch (error) {
             console.error("Error during model call:", error);
